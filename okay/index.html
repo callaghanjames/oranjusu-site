@@ -25,64 +25,64 @@
       src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/>
   </noscript>
 
-  <link rel="preload" as="image" href="/assets/header.png">
   <link rel="stylesheet" href="/okay/styles.css" />
 </head>
 
 <body>
   <main class="wrap">
     <section class="card">
-      <img class="header" src="/okay/assets/header.png" alt="Oran Jusu — OKAY!" />
-
-      <div class="grid">
+      <!-- Header box: cover left, header graphic right -->
+      <header class="hero">
         <img class="cover" src="/okay/assets/cover.webp" alt="OKAY! cover art" />
-
-        <div class="copy">
-          <p class="kicker">Old-school cool, with a futuristic feel.</p>
-          <p class="blurb">
-            The new single <strong>OKAY!</strong> — first release from the upcoming debut Oran Jusu album.
-            Supported by Creative Scotland National Lottery funding.
-          </p>
-
-          <div class="buttons">
-            <a class="btn" data-dsp="spotify" href="YOUR_SPOTIFY_URL" target="_blank" rel="noopener">
-              Listen on Spotify
-            </a>
-            <a class="btn" data-dsp="apple" href="YOUR_APPLE_URL" target="_blank" rel="noopener">
-              Listen on Apple Music
-            </a>
-            <a class="btn ghost" data-dsp="youtube" href="YOUR_YOUTUBE_URL" target="_blank" rel="noopener">
-              Watch on YouTube
-            </a>
-          </div>
-
-          <div class="badges">
-            <span class="badge">Creative Scotland × National Lottery</span>
-            <span class="badge">@Zi_ziii artwork</span>
-          </div>
+        <div class="hero-right">
+          <img class="header" src="/okay/assets/header.png" alt="Oran Jusu — OKAY!" />
         </div>
-      </div>
+      </header>
+
+      <!-- Buttons stacked -->
+      <nav class="stack" aria-label="Streaming services">
+        <a class="btn" data-dsp="spotify" href="YOUR_SPOTIFY_URL" target="_blank" rel="noopener">
+          <span class="ico" aria-hidden="true">SP</span>
+          <span class="label">Listen on Spotify</span>
+        </a>
+
+        <a class="btn" data-dsp="apple" href="YOUR_APPLE_URL" target="_blank" rel="noopener">
+          <span class="ico" aria-hidden="true">AM</span>
+          <span class="label">Listen on Apple Music</span>
+        </a>
+
+        <a class="btn" data-dsp="youtubemusic" href="YOUR_YOUTUBEMUSIC_URL" target="_blank" rel="noopener">
+          <span class="ico" aria-hidden="true">YM</span>
+          <span class="label">Listen on YouTube Music</span>
+        </a>
+
+        <a class="btn" data-dsp="soundcloud" href="YOUR_SOUNDCLOUD_URL" target="_blank" rel="noopener">
+          <span class="ico" aria-hidden="true">SC</span>
+          <span class="label">Listen on SoundCloud</span>
+        </a>
+
+        <a class="btn" data-dsp="amazonmusic" href="YOUR_AMAZON_URL" target="_blank" rel="noopener">
+          <span class="ico" aria-hidden="true">AZ</span>
+          <span class="label">Listen on Amazon Music</span>
+        </a>
+
+        <a class="btn" data-dsp="deezer" href="YOUR_DEEZER_URL" target="_blank" rel="noopener">
+          <span class="ico" aria-hidden="true">DZ</span>
+          <span class="label">Listen on Deezer</span>
+        </a>
+
+        <a class="btn" data-dsp="tidal" href="YOUR_TIDAL_URL" target="_blank" rel="noopener">
+          <span class="ico" aria-hidden="true">TD</span>
+          <span class="label">Listen on TIDAL</span>
+        </a>
+      </nav>
+
+      <!-- Small logos at bottom -->
+      <footer class="logos" aria-label="Logos">
+        <img class="logo" src="/okay/assets/oranjusu-logo.png" alt="Oran Jusu" />
+        <img class="logo" src="/okay/assets/creative-scotland-logo.png" alt="Creative Scotland" />
+      </footer>
     </section>
-
-    <!-- Mailing list modal -->
-    <div class="modal" id="signupModal" aria-hidden="true">
-      <div class="modal-inner" role="dialog" aria-modal="true" aria-labelledby="signupTitle">
-        <h2 id="signupTitle">Want updates on the debut album?</h2>
-        <p>Get new music + behind-the-scenes straight to your inbox.</p>
-
-        <!-- Replace with your provider (Mailchimp/Buttondown/etc.) -->
-        <form id="signupForm" action="YOUR_MAILING_LIST_FORM_ACTION" method="post" target="_blank">
-          <input type="email" name="EMAIL" placeholder="you@email.com" required />
-          <button type="submit" class="btn">Join the list</button>
-        </form>
-
-        <button class="close" id="closeModal" type="button">Not now</button>
-      </div>
-    </div>
-
-    <footer class="footer">
-      <a href="/" class="small">Back to main site</a>
-    </footer>
   </main>
 
   <script src="/okay/script.js"></script>
