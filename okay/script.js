@@ -49,7 +49,7 @@ document.querySelectorAll('a[data-dsp]').forEach((el) => {
     sendBackupPixel("Lead", PIXEL_ID, { dsp, content_name: "OKAY!" });
 
     // ✅ ADD THIS BLOCK
-    fetch("https://oran-capi.callaghanjames.workers.dev/capi", {
+    fetch("/capi", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
