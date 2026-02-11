@@ -56,8 +56,8 @@ document.querySelectorAll('a[data-dsp]').forEach((el) => {
         event_name: "Lead",
         event_id: eventID,
         dsp,
-        event_source_url: location.href,
-        test_event_code: "TEST51288"
+        event_source_url: location.href
+        // test_event_code: "TEST51288"
       })
     }).catch(() => {});
     // ✅ END ADD
