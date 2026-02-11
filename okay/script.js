@@ -3,22 +3,18 @@ function makeEventID() {
 }
 
 function sendBackupPixel(eventName, pixelId, params = {}) {
-  // Fallback that’s hard to drop: a simple GET to Facebook’s pixel endpoint
   const q = new URLSearchParams({
     id: pixelId,
     ev: eventName,
     dl: location.href,
     rl: document.referrer || "",
-    ...Object.fromEntries(
-      Object.entries(params).map(([k, v]) => [k, String(v)])
-    ),
+    ...Object.fromEntries(Object.entries(params).map(([k, v]) => [k, String(v)])),
     noscript: "1",
     rand: String(Math.random())
   });
 
   const url = `https://www.facebook.com/tr/?${q.toString()}`;
 
-  // Best effort: sendBeacon, then image as fallback
   if (navigator.sendBeacon) {
     navigator.sendBeacon(url);
   } else {
@@ -27,7 +23,6 @@ function sendBackupPixel(eventName, pixelId, params = {}) {
   }
 }
 
-// Put your Pixel ID here once, so backup works:
 const PIXEL_ID = "1873199413558787";
 
 document.querySelectorAll('a[data-dsp]').forEach((el) => {
@@ -36,12 +31,9 @@ document.querySelectorAll('a[data-dsp]').forEach((el) => {
     const url = el.href;
     const eventID = makeEventID();
 
-    // Stop the browser doing its default click immediately
     e.preventDefault();
 
-    // Fire Meta events (browser pixel)
     if (window.fbq) {
-      // NOTE: Meta expects "eventID" (capital D) in the options object
       fbq('track', 'Lead', {
         content_name: 'OKAY!',
         content_category: 'Music',
@@ -54,10 +46,22 @@ document.querySelectorAll('a[data-dsp]').forEach((el) => {
       }, { eventID });
     }
 
-    // Backup request that should appear as Lead even if JS unloads fast
     sendBackupPixel("Lead", PIXEL_ID, { dsp, content_name: "OKAY!" });
 
-    // Now open the service in a new tab after a tiny delay
+    // ✅ ADD THIS BLOCK
+    fetch("https://oran-capi.callaghanjames.workers.dev/capi", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        event_name: "Lead",
+        event_id: eventID,
+        dsp,
+        event_source_url: location.href
+        // test_event_code: "TESTxxxxx"
+      })
+    }).catch(() => {});
+    // ✅ END ADD
+
     setTimeout(() => {
       window.open(url, "_blank", "noopener");
     }, 120);
