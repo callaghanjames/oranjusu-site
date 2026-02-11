@@ -57,7 +57,7 @@ document.querySelectorAll('a[data-dsp]').forEach((el) => {
         event_id: eventID,
         dsp,
         event_source_url: location.href
-        // test_event_code: "TESTxxxxx"
+        test_event_code: "TEST51288"
       })
     }).catch(() => {});
     // ✅ END ADD
