@@ -35,18 +35,18 @@ document.querySelectorAll('a[data-dsp]').forEach((el) => {
 
     if (window.fbq) {
       fbq('track', 'Lead', {
-        content_name: 'OKAY!',
+        content_name: 'See You Again',
         content_category: 'Music',
         dsp
       }, { eventID });
 
       fbq('trackCustom', 'DspClick', {
-        track: 'OKAY!',
+        track: 'See You Again',
         dsp
       }, { eventID });
     }
 
-    sendBackupPixel("Lead", PIXEL_ID, { dsp, content_name: "OKAY!" });
+    sendBackupPixel("Lead", PIXEL_ID, { dsp, content_name: "See You Again" });
 
     // ✅ ADD THIS BLOCK
     fetch("/capi", {
