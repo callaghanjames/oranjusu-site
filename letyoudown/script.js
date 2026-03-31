@@ -1,0 +1,66 @@
+function makeEventID() {
+  return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+}
+
+function sendBackupPixel(eventName, pixelId, params = {}) {
+  const q = new URLSearchParams({
+    id: pixelId,
+    ev: eventName,
+    dl: location.href,
+    rl: document.referrer || "",
+    ...Object.fromEntries(Object.entries(params).map(([k, v]) => [k, String(v)])),
+    noscript: "1",
+    rand: String(Math.random())
+  });
+
+  const url = `https://www.facebook.com/tr/?${q.toString()}`;
+
+  if (navigator.sendBeacon) {
+    navigator.sendBeacon(url);
+  } else {
+    const img = new Image();
+    img.src = url;
+  }
+}
+
+const PIXEL_ID = "1873199413558787";
+
+document.querySelectorAll('a[data-dsp]').forEach((el) => {
+  el.addEventListener('click', (e) => {
+    const dsp = el.getAttribute('data-dsp') || 'unknown';
+    const url = el.href;
+    const eventID = makeEventID();
+
+    e.preventDefault();
+
+    if (window.fbq) {
+      fbq('track', 'Lead', {
+        content_name: 'Let You Down',
+        content_category: 'Music',
+        dsp
+      }, { eventID });
+
+      fbq('trackCustom', 'DspClick', {
+        track: 'Let You Down',
+        dsp
+      }, { eventID });
+    }
+
+    sendBackupPixel("Lead", PIXEL_ID, { dsp, content_name: "Let You Down" });
+
+    fetch("/capi", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        event_name: "Lead",
+        event_id: eventID,
+        dsp,
+        event_source_url: location.href
+      })
+    }).catch(() => {});
+
+    setTimeout(() => {
+      window.open(url, "_blank", "noopener");
+    }, 120);
+  }, { passive: false });
+});
