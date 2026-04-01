@@ -35,20 +35,19 @@ document.querySelectorAll('a[data-dsp]').forEach((el) => {
 
     if (window.fbq) {
       fbq('track', 'Lead', {
-        content_name: 'OKAY!',
+        content_name: 'Freshly Squeezed',
         content_category: 'Music',
         dsp
       }, { eventID });
 
       fbq('trackCustom', 'DspClick', {
-        track: 'OKAY!',
+        track: 'Freshly Squeezed',
         dsp
       }, { eventID });
     }
 
-    sendBackupPixel("Lead", PIXEL_ID, { dsp, content_name: "OKAY!" });
+    sendBackupPixel("Lead", PIXEL_ID, { dsp, content_name: "Freshly Squeezed" });
 
-    // ✅ ADD THIS BLOCK
     fetch("/capi", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -57,10 +56,8 @@ document.querySelectorAll('a[data-dsp]').forEach((el) => {
         event_id: eventID,
         dsp,
         event_source_url: location.href
-        // test_event_code: "TEST51288"
       })
     }).catch(() => {});
-    // ✅ END ADD
 
     setTimeout(() => {
       window.open(url, "_blank", "noopener");
