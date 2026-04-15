@@ -1,0 +1,160 @@
+/* === Oran Jusu — Email capture modal === */
+
+#oj-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.78);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+#oj-modal-overlay.visible {
+  display: flex;
+}
+
+#oj-modal-card {
+  background: rgba(11, 11, 18, 0.97);
+  border: 1px solid rgba(167, 255, 239, 0.2);
+  border-radius: 22px;
+  padding: 2rem 2rem 1.75rem;
+  width: 100%;
+  max-width: 420px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: rgba(255, 255, 255, 0.92);
+  font-family: inherit;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+}
+
+#oj-modal-card h2 {
+  margin: 0 0 0.4rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #a7ffef;
+  letter-spacing: -0.01em;
+}
+
+#oj-modal-card > p {
+  margin: 0 0 1.4rem;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.5;
+}
+
+.oj-field {
+  margin-bottom: 0.85rem;
+}
+
+.oj-field label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 0.35rem;
+}
+
+.oj-field input,
+.oj-field select {
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
+  padding: 0.65rem 0.85rem;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.92);
+  outline: none;
+  transition: border-color 0.12s;
+  -webkit-appearance: none;
+  appearance: none;
+  font-family: inherit;
+}
+
+.oj-field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.35)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.85rem center;
+  padding-right: 2.2rem;
+  cursor: pointer;
+}
+
+.oj-field select option {
+  background: #0f0f14;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.oj-field input:focus,
+.oj-field select:focus {
+  border-color: rgba(167, 255, 239, 0.5);
+}
+
+.oj-field input::placeholder {
+  color: rgba(255, 255, 255, 0.28);
+}
+
+#oj-modal-submit {
+  display: block;
+  width: 100%;
+  margin-top: 1.1rem;
+  padding: 0.75rem 1rem;
+  background: #a7ffef;
+  color: #0b0b10;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  font-family: inherit;
+  transition: opacity 0.12s, transform 0.08s;
+}
+
+#oj-modal-submit:hover {
+  opacity: 0.88;
+}
+
+#oj-modal-submit:active {
+  transform: scale(0.98);
+}
+
+#oj-modal-submit:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+#oj-modal-skip {
+  display: block;
+  text-align: center;
+  margin-top: 0.9rem;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.38);
+  cursor: pointer;
+  background: none;
+  border: none;
+  width: 100%;
+  padding: 0.25rem 0;
+  font-family: inherit;
+  transition: color 0.12s;
+}
+
+#oj-modal-skip:hover {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+#oj-modal-feedback {
+  font-size: 0.86rem;
+  margin: 0.6rem 0 0;
+  text-align: center;
+  min-height: 1.2em;
+  color: rgba(167, 255, 239, 0.85);
+}
+
+#oj-modal-feedback.oj-error {
+  color: rgba(255, 110, 110, 0.9);
+}

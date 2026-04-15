@@ -25,13 +25,13 @@ function sendBackupPixel(eventName, pixelId, params = {}) {
 
 const PIXEL_ID = "1873199413558787";
 
+initEmailModal({ mailchimpUrl: 'https://icloud.us7.list-manage.com/subscribe/post?u=acc8234cf94f0de5b16b82418&amp;id=dc24663714&amp;f_id=00604de4f0', trackName: 'See You Again' });
+
 document.querySelectorAll('a[data-dsp]').forEach((el) => {
   el.addEventListener('click', (e) => {
     const dsp = el.getAttribute('data-dsp') || 'unknown';
     const url = el.href;
     const eventID = makeEventID();
-
-    e.preventDefault();
 
     if (window.fbq) {
       fbq('track', 'Lead', {
@@ -62,8 +62,6 @@ document.querySelectorAll('a[data-dsp]').forEach((el) => {
     }).catch(() => {});
     // ✅ END ADD
 
-    setTimeout(() => {
-      window.open(url, "_blank", "noopener");
-    }, 120);
+    showEmailModal();
   }, { passive: false });
 });
